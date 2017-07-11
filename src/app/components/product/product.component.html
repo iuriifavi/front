@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12">Name:</div>
+      <editable-label class="col-xs-12" [value]='product.name' [editable]=true ></editable-label>
+  </div>
+  <div class="row">
+      <div class="col-xs-12">Description:</div>
+      <editable-label class="col-xs-12" [value]='product.description' [editable]=true ></editable-label>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <div style="width: 100%">Code</div>
+      <editable-label style="width: 100%" [value]='product.code' [editable]=true ></editable-label>
+    </div>
+    <div class="col-xs-4">
+      <div style="width: 100%">Certificate</div>
+      <editable-label style="width: 100%" [value]='product.certificate' [editable]=true ></editable-label>
+    </div>
+    <div class="col-xs-4">
+      <div style="width: 100%">Scale</div>
+      <editable-label style="width: 100%" [value]='product.scale' [editable]=true ></editable-label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <div style="width: 100%">Amount:</div>
+      <input style="width: 100%" class="form-control" type="number" [value]='product.amount'>
+    </div>
+  </div>
+</div>
