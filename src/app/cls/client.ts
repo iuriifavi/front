@@ -2,8 +2,7 @@ import { Description, FieldDescription } from "./description";
 
 export class Client {
     _id: string
-    m: string
-    p: string
+    mamanger: string
     name: string
     commercialName: string
     phone: string
@@ -23,8 +22,7 @@ export class Client {
 
 export class ClientDescription extends Description {
 	descriptionMap = [
-		new FieldDescription("m", "M"),
-		new FieldDescription("p", "P"),
+		new FieldDescription("manager", "Manager"),
 		new FieldDescription("name", "Name"),
 		new FieldDescription("commercialName", "LLC"),
 		new FieldDescription("phone", "Phone"),
