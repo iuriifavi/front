@@ -1,2 +1,3 @@
-export * from './clientsRoutes'
-export * from './driversRoutes'
+export * from './clientsRoutes';
+export * from './driversRoutes';
+export * from './printRoutes';
