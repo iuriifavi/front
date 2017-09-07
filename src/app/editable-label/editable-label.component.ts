@@ -30,20 +30,23 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'editable-label',
   template: `
     <div [ngSwitch]="editing">
-        <div *ngSwitchCase='false' (click)="trigerEditor()">{{innerValue}}</div>
-        <input *ngSwitchCase='true' class="form-control editable-label" type="text" [(ngModel)]="value"
+        <div class="editable-div" *ngSwitchCase='false' (click)="trigerEditor()"><span>{{innerValue||placeholder}}</span></div>
+        <input *ngSwitchCase='true' class="form-control editable-input" [type]='type' [(ngModel)]="value"
         (keydown.enter)="editing=onChange()||false" (focusout)="editing=onChange()||false" (change)="$event.stopPropagation()"
         (blur)="onBlur()" focus>
     </div>`,
-    providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
-    outputs: ['update:change']
+  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
+  outputs: ['update:change'],
+  styleUrls: ['./editable-label.css']
 })
 
 export class EditableLabelComponent implements OnInit, ControlValueAccessor{
   //EditableLabelComponent
   @Input("value") innerValue: any = '';
+  @Input("placeholder") placeholder: any = '...';
   @Input("default") defaultValue: any = '';
-  @Input() editable: boolean = false;
+  @Input("editable") editable: boolean = false;
+  @Input("type") type: string = "text";
   @Output("change") update = new EventEmitter<any>();
   
   editing: boolean = false;

@@ -2,7 +2,7 @@ import { Description, FieldDescription } from "./description";
 
 export class Client {
     _id: string
-    mamanger: string
+    manager: string
     name: string
     commercialName: string
     phone: string

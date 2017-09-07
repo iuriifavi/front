@@ -11,7 +11,7 @@ export class ProductService {
   restService: RestClientService
 
   constructor(protected http: Http) {
-    this.restService = new RestClientService("http://localhost:3000/product", http)
+    this.restService = new RestClientService("http://localhost:3000/products", http)
   }
 
   getAll(skip?: Number, limit?: Number): Observable<Product[]> {

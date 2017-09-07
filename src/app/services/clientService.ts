@@ -11,11 +11,13 @@ export class ClientService {
   restService: RestClientService
 
   constructor(protected http: Http) {
-    this.restService = new RestClientService("http://localhost:3000/client", http)
+    this.restService = new RestClientService("http://localhost:3000/clients", http)
   }
 
   getAll(skip?: Number, limit?: Number): Observable<Client[]> {
-    return this.restService.get(null);
+    var t = this.restService.get(null);
+    t.subscribe(_ => console.log(_));
+    return t;
   }
 
   get(id): Observable<Client> {

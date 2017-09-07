@@ -11,7 +11,7 @@ export class DriverService {
   restService: RestClientService
 
   constructor(protected http: Http) {
-    this.restService = new RestClientService("http://localhost:3000/driver", http)
+    this.restService = new RestClientService("http://localhost:3000/drivers", http)
   }
 
   getAll(skip?: Number, limit?: Number): Observable<Driver[]> {

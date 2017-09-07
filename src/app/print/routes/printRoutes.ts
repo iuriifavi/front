@@ -1,12 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { PodatkovaComponent } from '../podatkova/podatkova.component';
 
-import { PodatkovaComponent } from '../print/podatkova/podatkova.component';
-
-const printRoutes: Routes = [
+export const printRoutes: Routes = [
     {
         path: 'print',
-        component: PodatkovaComponent,
+        component: null,
         children: [
             { path: 'podatkova',
               component: PodatkovaComponent,

@@ -1,10 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { Router, RouterModule } from '@angular/router'
 
-import { FormsModule } from "./components";
+import { FormsModule } from "./forms";
+import { PrintModule } from './print';
 
 import { AppComponent } from './app.component';
+import { ShansRoutes } from './routes';
+import { ShansServices } from './services';
 
 @NgModule({
   declarations: [
@@ -12,8 +16,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    PrintModule,
+    ShansServices,
+    ShansRoutes
   ],
   providers: [],
   bootstrap: [AppComponent]

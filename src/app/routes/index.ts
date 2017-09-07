@@ -1,3 +1,3 @@
-export * from './clientsRoutes';
-export * from './driversRoutes';
-export * from './printRoutes';
+export * from './mainRoutes'
+
+export * from './routes.module'

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PrintRoutes } from '../routes/printRoutes';
+
+import { PrintRoutes } from './routes';
 import { PodatkovaComponent } from './podatkova/podatkova.component';
 
 

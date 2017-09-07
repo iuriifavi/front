@@ -7,13 +7,19 @@ import { DriverComponent } from './driver/driver.component';
 import { ClientComponent } from './client/client.component';
 import { ProductComponent } from './product/product.component';
 import { ListViewComponent } from './list-view/list-view.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+
+import { ClientsRoutes , ProductsRoutes, DriversRoutes } from './routes';
 
 @NgModule({
   imports: [
     CommonModule,
-    EditableLabelModule
+    EditableLabelModule,
+    ClientsRoutes,
+    ProductsRoutes,
+    DriversRoutes
   ],
-  declarations: [DriverComponent, ClientComponent, ProductComponent, ListViewComponent],
-  exports: [DriverComponent, ClientComponent, ProductComponent, ListViewComponent]
+  declarations: [DriverComponent, ClientComponent, ProductComponent, ListViewComponent, WelcomeComponent],
+  exports: [DriverComponent, ClientComponent, ProductComponent, ListViewComponent, WelcomeComponent ]
 })
 export class FormsModule { }
