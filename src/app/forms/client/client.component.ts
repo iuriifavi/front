@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Client } from "../../cls";
+import { ClientService } from '../../services';
 
 
 @Component({
@@ -9,10 +10,15 @@ import { Client } from "../../cls";
   templateUrl: './client.component.html',
 })
 export class ClientComponent implements OnInit {
-  @Input() client: Client
+  @Input() client: Client = new Client();
   @Input() editable: boolean = false;
   
-  constructor(public activatedRoute: ActivatedRoute) { }
+  constructor(public activatedRoute: ActivatedRoute, public clientService: ClientService) { }
+
+  save() {
+    console.log(this.client);
+    this.clientService.post(this.client);
+  }
 
   ngOnInit() {
     if (this.activatedRoute.data) {

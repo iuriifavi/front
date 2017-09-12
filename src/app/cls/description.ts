@@ -1,16 +1,34 @@
-function getValue(object: any, field: string): any {
-    let fields = field.split('.');
-    for (let i = 0; object && i < fields.length; i++) {
-        object = object[fields[i]];
-    }
-
-    return object;
+function hasValue(target: any, name: string): any {
+    return name.split('.').every( (name) => 
+        name in target ? target[name] : false
+    );
 }
 
-function hasValue(object: any, field: string): any {
-    return field.split('.').every( (field) => 
-        object.hasOwnProperty(field) ? object = object[field] : false
-    );
+function getValue(target: any, name: string): any {
+    let fields = name.split('.');
+    for (let i = 0; target && i < fields.length; i++) {
+        target = target[fields[i]];
+    }
+
+    return target;
+}
+
+export var DotResolver = {
+    get: function (target, name) {
+        return name in target ? target[name] : getValue(target, name);
+    }
+}
+
+export function createDescriptionProxyHandler(descriptionObject: FieldDescription[]): any {
+    return {
+        get: function (target, name) {
+            var idx = Number(name);
+            if (isNaN(idx))
+                return name in target ? target[name] : getValue(target, name);
+            else
+                return getValue(target, descriptionObject[idx].name);    
+        }
+    };
 }
 
 export class FieldDescription {
@@ -28,34 +46,28 @@ export interface DescriptionInterface {
 
 export class Description implements DescriptionInterface{
     descriptionMap: FieldDescription[]
-    
-    //TODO: undone
-    mapObjects(objects: Array<any>, fields?: string[]) {
-        var descriptions = this.descriptionMap.filter((field) => fields.includes(field.name));
-        return objects.map( (object) => {
-            var output = {}
-            descriptions.forEach(
-                (description) => output[description.name] = getValue(object, description.name))
-            return output;
-        })
+
+    getFilteredDescription(include?: string[]): FieldDescription[] {
+        if (include)
+            return this.descriptionMap.filter((field) => include.includes(field.name));
+        else
+            return this.descriptionMap;
     }
 
-    mapObject(object: any, fields?: string[]): DescribedField[] {
-        let descriptions = this.descriptionMap;
+    get range() {
+        return this.descriptionMap.map( (_,i) => i);
+    }
+    
+    mapObjects(objects: Array<any>, fields?: string[]): any {
+        var descriptionObject = this.getFilteredDescription(fields);
+        var proxyHandler = createDescriptionProxyHandler(descriptionObject);
+        return objects.map(_ => new Proxy(_, proxyHandler));
+    }
 
-        if (fields && fields.length != 0) {
-            descriptions = descriptions.filter(
-                (field) => fields.includes(field.name) && hasValue(object, field.name));
-        } else {
-            descriptions = descriptions.filter((field) => hasValue(object, field.name));
-        }
-
-        let described = descriptions
-                    .map((field) => {
-                        let value = getValue(object, field.name)
-                        return new DescribedField(field.description, value)
-                    });
-        return null;
+    mapObject(object: any, fields?: string[]): any {
+        var descriptionObject = this.getFilteredDescription(fields);
+        var proxyHandler = createDescriptionProxyHandler(descriptionObject);
+        return new Proxy(object, proxyHandler);
     }
 
     getDescription(name: string): string {

@@ -15,13 +15,15 @@ export class ClientService {
   }
 
   getAll(skip?: Number, limit?: Number): Observable<Client[]> {
-    var t = this.restService.get(null);
-    t.subscribe(_ => console.log(_));
-    return t;
+    return this.restService.get(null);
   }
 
   get(id): Observable<Client> {
     return this.restService.get(id);
+  }
+
+  post(client: Client) {
+    return this.restService.post(client);
   }
 
   update(client: Client): Observable<Client>{

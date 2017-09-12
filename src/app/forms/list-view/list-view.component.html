@@ -1,5 +1,15 @@
 <div>
-  <p>
-    Bad
-  </p>
+  <a routerLink="new">
+      <fa name="plus-circle" size="3x" style='color:green;'></fa>
+  </a>
+  <table>
+    <tr>
+      <th *ngFor="let field of description.descriptionMap">
+        {{field.description}}
+      </th>
+    </tr>
+      <tr *ngFor="let object of data">
+        <td *ngFor="let i of description.range">{{object[i]}}</td>
+      </tr>
+  </table>
 </div>

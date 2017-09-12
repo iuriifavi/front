@@ -4,7 +4,7 @@ import { DriversResolver, DriverResolver } from '../../services';
 
 import { DriverComponent } from '../driver/driver.component';
 import { ListViewComponent } from '../list-view/list-view.component';
-import { Driver } from '../../cls';
+import { Driver, DriverDescription } from '../../cls';
 
 export const driversRoutes: Routes = [
     {
@@ -22,13 +22,14 @@ export const driversRoutes: Routes = [
               component: DriverComponent,
               resolve: {
                 driver: DriverResolver
-              },
+              }
             },
             { path: '',
               component: ListViewComponent,
               resolve: {
                 list: DriversResolver
-              }
+              },
+              data: { description: new DriverDescription() }
             }
         ],
     },

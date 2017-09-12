@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+
 import { EditableLabelModule } from "../editable-label";
 
 import { DriverComponent } from './driver/driver.component';
@@ -17,7 +19,8 @@ import { ClientsRoutes , ProductsRoutes, DriversRoutes } from './routes';
     EditableLabelModule,
     ClientsRoutes,
     ProductsRoutes,
-    DriversRoutes
+    DriversRoutes,
+    AngularFontAwesomeModule
   ],
   declarations: [DriverComponent, ClientComponent, ProductComponent, ListViewComponent, WelcomeComponent],
   exports: [DriverComponent, ClientComponent, ProductComponent, ListViewComponent, WelcomeComponent ]

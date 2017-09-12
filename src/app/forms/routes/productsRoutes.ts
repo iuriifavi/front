@@ -5,7 +5,7 @@ import { ProductsResolver, ProductResolver } from '../../services';
 import { ProductComponent } from '../product/product.component';
 import { ListViewComponent } from '../list-view/list-view.component';
 
-import { Product } from '../../cls';
+import { Product, ProductDescription } from '../../cls';
 
 export const productsRoutes: Routes = [
     {
@@ -16,7 +16,8 @@ export const productsRoutes: Routes = [
               component: ListViewComponent,
               resolve: {
                 list: ProductsResolver
-              }
+              },
+              data: { description: new ProductDescription() }
             },
             { path: 'new',
             component: ProductComponent,

@@ -5,7 +5,7 @@ import { ClientsResolver, ClientResolver } from '../../services';
 import { ClientComponent } from '../client/client.component';
 import { ListViewComponent } from '../list-view/list-view.component';
 
-import { Client } from '../../cls';
+import { Client, ClientDescription } from '../../cls';
 
 export const clientsRoutes: Routes = [
     {
@@ -17,6 +17,7 @@ export const clientsRoutes: Routes = [
               resolve: {
                 list: ClientsResolver
               },
+              data: { description: new ClientDescription() }
             },
             { path: 'new',
               component: ClientComponent,
@@ -26,7 +27,7 @@ export const clientsRoutes: Routes = [
               component: ClientComponent,
               resolve: {
                 client: ClientResolver
-              },
+              }
             },
             { path: 'edit/:id',
             component: ClientComponent,

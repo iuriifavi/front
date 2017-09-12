@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
+body {
+    padding-top: 30px;
+}
+
 .form-control, input {
     height: 20px;
+}
+
+th:nth-child(odd) {
+    background: rgba(180, 180,180, 0.45);
+}
+
+th:nth-child(even) {
+    background: rgba(180, 180,180, 0.25);
 }

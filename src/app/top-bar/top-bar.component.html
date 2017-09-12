@@ -1,0 +1,24 @@
+<div class="container-fluid">
+
+  <div class="navbar-header">
+    <button #btn type="button" class="navbar-toggle hidden-sm-up" (click)="collapseButtonClick($event); btn.blur()" (blurDirective)="outsideClick($event)" aria-controls="navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+    </button>
+    <a class="navbar-brand" routerLink="/" >
+      <span>{{brand}}</span>
+    </a>
+  </div>
+  <div class="collapse navbar-collapse" #navbar [(attr.aria-expanded)]="!isCollapsed" [ngClass]="{collapse: isCollapsed}">
+    <ul class="nav navbar-nav">
+      <li *ngFor="let link of links" class="nav-item">
+        <a *ngIf="!link.sub" routerLink="{{link.url}}">{{link.text}}</a>  
+        <a *ngIf="link.sub" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{link.text}}</a>
+        <ul *ngIf="link.sub" class="dropdown-menu">
+            <li *ngFor="let sublink of link.sub" ><a class="dropdown-item" routerLink="{{link.url +'/'+ sublink.url}}">{{sublink.text}}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
